@@ -51,7 +51,7 @@
 </head>
 
 <body class="flex-container">
-
+    <audio id="click-sound" src="https://www.soundjay.com/buttons/button-16.mp3"></audio>
     <script>
         // array com as informações do condomínio
         const condominio = [
@@ -89,6 +89,8 @@
         function vascula(event, elemento) {
 
             event.stopPropagation();
+            var audio = document.getElementById("click-sound")
+            audio.play();
 
             for (let k = 0; k < elemento.children.length; k++) {
                 if (elemento.children[k].style.display == "") {
