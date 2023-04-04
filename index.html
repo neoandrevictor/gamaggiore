@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamaggiore</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: larger;
+            background-color: #333;
+        }
+
+        h2 {
+            font-size: medium;
+            background-color: #666;
+        }
+
+        h3 {
+            font-size: small;
+            background-color: #888;
+
+        }
+
+        h1,
+        h2,
+        h3 {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 10px;
+            width: auto;
+            display: flex;
+            flex-wrap: wrap;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 5px;
+            border: solid 1px white;
+        }
+    </style>
+</head>
+
+<body class="flex-container">
+
+    <script>
+        // array com as informações do condomínio
+        const condominio = [
+            { torre: 1, andares: 21 },
+            { torre: 2, andares: 21 },
+            { torre: 3, andares: 21 },
+            { torre: 4, andares: 21 },
+            { torre: 5, andares: 21 },
+            { torre: 6, andares: 20 },
+            { torre: 7, andares: 20 }
+        ];
+
+        for (k = 0; k < condominio.length; k++) {
+            let torre = document.createElement("h1");
+            torre.innerText = "Torre " + condominio[k].torre;
+            torre.setAttribute("onclick", "vascula(event,this)");
+            torre.style.cursor = "pointer";
+            document.body.appendChild(torre);
+            for (let j = 0; j < condominio[k].andares; j++) {
+                let andar = document.createElement("h2");
+                andar.innerText = "Andar " + (j + 1);
+                andar.style.display = "none";
+                andar.style.cursor = "pointer";
+                andar.setAttribute("onclick", "vascula(event,this)");
+                torre.appendChild(andar);
+                for (let m = 0; m < 8; m++) {
+                    let apartamento = document.createElement("h3");
+                    apartamento.innerText = (j + 1) + "0" + (m + 1);
+                    andar.appendChild(apartamento);
+                    apartamento.style.display = "none";
+                }
+            }
+        }
+
+        function vascula(event, elemento) {
+
+            event.stopPropagation();
+
+            for (let k = 0; k < elemento.children.length; k++) {
+                if (elemento.children[k].style.display == "") {
+                    elemento.children[k].style.display = "none";
+                } else {
+                    elemento.children[k].style.display = "";
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
